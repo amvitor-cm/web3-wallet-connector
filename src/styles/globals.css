@@ -1,217 +1,130 @@
+import { useWallet } from '../hooks/useWallet';
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+const WalletConnector = () => {
+  const { account, balance, chainId, isConnecting, error, connectWallet, disconnectWallet } = useWallet();
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  const formatAddress = (address: string) => {
+    return `${address.slice(0, 6)}...${address.slice(-4)}`;
+  };
 
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
-  color: #ffffff;
-  min-height: 100vh;
-  line-height: 1.6;
-}
+  const getNetworkName = (chainId: number | null) => {
+    if (!chainId) return 'Unknown';
+    
+    const networks: { [key: number]: string } = {
+      1: 'Ethereum Mainnet',
+      5: 'Goerli Testnet',
+      11155111: 'Sepolia Testnet',
+      137: 'Polygon Mainnet',
+      80001: 'Mumbai Testnet'
+    };
+    
+    return networks[chainId] || `Network ${chainId}`;
+  };
 
-/* Glass morphism effect */
-.glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-}
-
-.glass-dark {
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* Neon glow effects */
-.neon-glow {
-  box-shadow: 
-    0 0 20px rgba(79, 70, 229, 0.3),
-    0 0 40px rgba(79, 70, 229, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-.neon-glow-green {
-  box-shadow: 
-    0 0 20px rgba(16, 185, 129, 0.3),
-    0 0 40px rgba(16, 185, 129, 0.2);
-}
-
-/* Modern buttons */
-.btn-primary {
-  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-  border: none;
-  color: white;
-  padding: 14px 28px;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 
-    0 10px 25px rgba(79, 70, 229, 0.4),
-    0 0 30px rgba(79, 70, 229, 0.3);
-}
-
-.btn-primary:active {
-  transform: translateY(0);
-}
-
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  transition: left 0.5s;
-}
-
-.btn-primary:hover::before {
-  left: 100%;
-}
-
-.btn-secondary {
-  background: rgba(239, 68, 68, 0.9);
-  border: none;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-secondary:hover {
-  background: rgba(239, 68, 68, 1);
-  transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3);
-}
-
-/* Text styles */
-.text-gradient {
-  background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.text-glow {
-  text-shadow: 0 0 20px rgba(79, 70, 229, 0.5);
-}
-
-/* Card styles */
-.card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: 2rem;
-  backdrop-filter: blur(20px);
-  transition: all 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(79, 70, 229, 0.3);
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.3),
-    0 0 30px rgba(79, 70, 229, 0.2);
-}
-
-/* Wallet status indicator */
-.status-indicator {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #10b981;
-  box-shadow: 0 0 10px #10b981;
-  animation: pulse 2s infinite;
-}
-
-/* Animations */
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-}
-
-.floating {
-  animation: float 3s ease-in-out infinite;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #4f46e5, #7c3aed);
-  border-radius: 10px;
-}
-
-/* Utility classes */
-.text-center { text-align: center; }
-.mb-2 { margin-bottom: 0.5rem; }
-.mb-4 { margin-bottom: 1rem; }
-.mb-6 { margin-bottom: 1.5rem; }
-.mt-2 { margin-top: 0.5rem; }
-.mt-4 { margin-top: 1rem; }
-.mt-6 { margin-top: 1.5rem; }
-.p-4 { padding: 1rem; }
-.p-6 { padding: 1.5rem; }
-.px-4 { padding-left: 1rem; padding-right: 1rem; }
-.py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
-.py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
-.rounded-xl { border-radius: 12px; }
-.rounded-2xl { border-radius: 20px; }
-.w-full { width: 100%; }
-.max-w-md { max-width: 28rem; }
-.mx-auto { margin-left: auto; margin-right: auto; }
-.flex { display: flex; }
-.items-center { align-items: center; }
-.justify-center { justify-content: center; }
-.justify-between { justify-content: space-between; }
-.gap-2 { gap: 0.5rem; }
-.gap-4 { gap: 1rem; }
-.text-sm { font-size: 0.875rem; }
-.text-lg { font-size: 1.125rem; }
-.text-xl { font-size: 1.25rem; }
-.text-2xl { font-size: 1.5rem; }
-.text-3xl { font-size: 1.875rem; }
-.font-semibold { font-weight: 600; }
-.font-bold { font-weight: 700; }
-.opacity-60 { opacity: 0.6; }
-.opacity-80 { opacity: 0.8; }
-
-/* Responsive */
-@media (max-width: 768px) {
-  .card {
-    margin: 1rem;
-    padding: 1.5rem;
+  if (account) {
+    return (
+      <div className="card max-w-md mx-auto neon-glow mt-8">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-xl font-bold text-gradient">Wallet Connected</h2>
+          <div className="flex items-center gap-2">
+            <div className="status-indicator"></div>
+            <span className="text-sm text-green-400">Connected</span>
+          </div>
+        </div>
+        
+        <div className="space-y-4">
+          <div className="glass-dark p-4 rounded-xl">
+            <label className="text-sm opacity-80 mb-2 block">Wallet Address</label>
+            <div className="flex items-center justify-between">
+              <code className="text-lg font-mono bg-black bg-opacity-30 px-3 py-2 rounded-lg">
+                {formatAddress(account)}
+              </code>
+              <button
+                onClick={() => navigator.clipboard.writeText(account)}
+                className="glass p-2 rounded-lg hover:bg-opacity-50 transition-all"
+                title="Copy address"
+              >
+                📋
+              </button>
+            </div>
+          </div>
+          
+          <div className="glass-dark p-4 rounded-xl">
+            <label className="text-sm opacity-80 mb-2 block">Balance</label>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
+                <span className="text-sm">💰</span>
+              </div>
+              <span className="text-2xl font-bold text-gradient">
+                {parseFloat(balance).toFixed(4)} ETH
+              </span>
+            </div>
+          </div>
+          
+          <div className="glass-dark p-4 rounded-xl">
+            <label className="text-sm opacity-80 mb-2 block">Network</label>
+            <div className="flex items-center gap-3">
+              <div className="w-6 h-6 bg-gradient-to-r from-green-400 to-blue-500 rounded-full"></div>
+              <span className="font-semibold">{getNetworkName(chainId)}</span>
+            </div>
+          </div>
+        </div>
+        
+        <button
+          onClick={disconnectWallet}
+          className="btn-secondary w-full mt-6"
+        >
+          Disconnect Wallet
+        </button>
+      </div>
+    );
   }
-  
-  .text-3xl {
-    font-size: 1.5rem;
-  }
-}
+
+  return (
+    <div className="card max-w-md mx-auto text-center mt-8">
+      <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 neon-glow">
+        <span className="text-3xl">🔐</span>
+      </div>
+      
+      <h1 className="text-3xl font-bold text-gradient text-glow mb-3">
+        Connect Wallet
+      </h1>
+      
+      <p className="text-lg opacity-80 mb-8">
+        Secure connection to access Web3 features
+      </p>
+
+      {error && (
+        <div className="glass-dark border border-red-400 text-red-300 px-4 py-3 rounded-xl mb-6">
+          ⚠️ {error}
+        </div>
+      )}
+
+      <button
+        onClick={connectWallet}
+        disabled={isConnecting}
+        className="btn-primary w-full py-4 text-lg"
+      >
+        {isConnecting ? (
+          <span className="flex items-center justify-center gap-3">
+            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            Connecting to Wallet...
+          </span>
+        ) : (
+          <span className="flex items-center justify-center gap-3">
+            <span className="w-6 h-6">👛</span>
+            Connect MetaMask
+          </span>
+        )}
+      </button>
+
+      <div className="mt-6 p-4 glass-dark rounded-xl">
+        <p className="text-sm opacity-60">
+          🔒 Secure • 🚀 Fast • 🌐 Multi-Chain
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default WalletConnector;
