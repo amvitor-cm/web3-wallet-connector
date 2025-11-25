@@ -9,18 +9,18 @@ A modern, production-ready Ethereum wallet connection interface built with React
 
 ## ✨ Features
 
-- **🦊 MetaMask Integration** - Seamless wallet connection
-- **🔐 Secure Design** - Glass morphism with modern security indicators
-- **📱 Responsive UI** - Beautiful design that works on all devices
-- **⚡ Real-time Updates** - Live balance and network monitoring
-- **🌐 Multi-Chain Support** - Ethereum, Polygon, Testnets and more
-- **🎨 Web3 Aesthetic** - Dark theme with gradients and animations
-- **📋 Copy Address** - One-click address copying
-- **🔔 Smart Notifications** - User-friendly error handling
+- **MetaMask Integration** - Seamless wallet connection
+- ** Secure Design** - Glass morphism with modern security indicators
+- **Responsive UI** - Beautiful design that works on all devices
+- **Real-time Updates** - Live balance and network monitoring
+- **Multi-Chain Support** - Ethereum, Polygon, Testnets and more
+- **Web3 Aesthetic** - Dark theme with gradients and animations
+- **Copy Address** - One-click address copying
+- **Smart Notifications** - User-friendly error handling
 
 ## 🚀 Live Demo
 
-[View Live Demo](https://your-deployment-link.vercel.app) <!-- Replace with your actual deployment link -->
+[View Live Demo](https://web3-wallet-connector-mocha.vercel.app/) 
 
 ## 🛠 Tech Stack
 
