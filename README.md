@@ -10,7 +10,7 @@ A modern, production-ready Ethereum wallet connection interface built with React
 ## ✨ Features
 
 - **MetaMask Integration** - Seamless wallet connection
-- ** Secure Design** - Glass morphism with modern security indicators
+- **Secure Design** - Glass morphism with modern security indicators
 - **Responsive UI** - Beautiful design that works on all devices
 - **Real-time Updates** - Live balance and network monitoring
 - **Multi-Chain Support** - Ethereum, Polygon, Testnets and more
