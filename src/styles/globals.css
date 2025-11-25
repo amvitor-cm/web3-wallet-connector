@@ -1,4 +1,4 @@
-/* Web3 Modern Styling */
+/* Web3 Styling */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 * {
@@ -214,4 +214,7 @@ body {
   .text-3xl {
     font-size: 1.5rem;
   }
+}
+body {
+  padding-top: 3rem !important;
 }
