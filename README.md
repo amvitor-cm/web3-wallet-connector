@@ -13,7 +13,7 @@ A sleek cyberpunk Ethereum wallet connector designed to modernize your dApp. No 
 
 ## 🚀 Live Demo
 
-[See it in action](https://web3-wallet-connector-mocha.vercel.app/) - connect your wallet and see the cyberpunk vibes
+[See it in action](https://web3-wallet-connector-mocha.vercel.app/) 
 
 ## 🛠 What's Under the Hood
 
