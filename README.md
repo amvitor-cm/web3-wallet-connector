@@ -2,7 +2,7 @@
 
 A sleek cyberpunk Ethereum wallet connector designed to modernize your dApp. No outdated UI - just fast, futuristic wallet interactions.
 
-## ✨ What It Actually Does
+## What It Actually Does
 
 - **Connects to MetaMask** (and other wallets) without the ugly default modals
 - **Shows real ETH balance** - no fake data, pulls directly from the blockchain
