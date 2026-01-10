@@ -1,25 +1,5 @@
 import WalletConnector from './components/WalletConnector';
 
-// SVG Icons as React components
-const BlockchainIcon = () => (
-  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M12 2L2 7L12 12L22 7L12 2Z"/>
-    <path d="M2 17L12 22L22 17"/>
-    <path d="M2 12L12 17L22 12"/>
-  </svg>
-);
-
-const NetworkIcon = () => (
-  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
-    <circle cx="12" cy="12" r="10"/>
-    <circle cx="12" cy="12" r="1"/>
-    <path d="M12 2L12 22"/>
-    <path d="M2 12L22 12"/>
-    <path d="M4.93 4.93L19.07 19.07"/>
-    <path d="M4.93 19.07L19.07 4.93"/>
-  </svg>
-);
-
 function App() {
   return (
     <div className="min-h-screen px-4 cyber-grid">
@@ -39,16 +19,10 @@ function App() {
 
       <div className="relative z-10 max-w-4xl mx-auto pt-12">
         <header className="text-center mb-16">
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="icon-wrapper">
-              <BlockchainIcon />
-            </div>
+          <div className="mb-6">
             <h1 className="text-5xl font-extrabold text-gradient-cyber glitch">
               WEB3 WALLET
             </h1>
-            <div className="icon-wrapper">
-              <NetworkIcon />
-            </div>
           </div>
           <p className="text-xl text-gradient-subtle max-w-2xl mx-auto leading-relaxed font-light">
             Your gateway to the decentralized future. Connect securely and explore the blockchain.
