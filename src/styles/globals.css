@@ -33,12 +33,12 @@ body {
     left: 0;
     right: 0;
     height: 1px;
-    background: rgba(255, 166, 77, 0.5); /* MetaMask orange with opacity */
+    background: rgba(255, 166, 77, 0.5); 
 }
 
 /* Cyber buttons */
 .btn-cyber {
-    background: #ff8547; /* MetaMask orange */
+    background: #ff8547; 
     border: none;
     color: white;
     padding: 16px 32px;
@@ -97,7 +97,7 @@ body {
 
 /* Text styles */
 .text-gradient-cyber {
-    color: #ff8547; /* MetaMask orange */
+    color: #ff8547;
 }
 
 .text-gradient-subtle {
@@ -123,7 +123,7 @@ body {
     left: 0;
     right: 0;
     height: 1px;
-    background: #ff8547; /* MetaMask orange */
+    background: #ff8547; 
 }
 
 .card-cyber:hover {
@@ -233,7 +233,7 @@ body {
 
 /* Custom icons */
 .icon-wrapper {
-    background: #ff8547; /* MetaMask orange */
+    background: #ff8547; 
     border-radius: 16px;
     padding: 12px;
     display: flex;
